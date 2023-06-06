@@ -7,32 +7,49 @@
 
 import UIKit
 
+enum CurrentLight {
+    case red, yellow, green
+}
 class ViewController: UIViewController {
     
     @IBOutlet weak var redLight: UIImageView!
-    
     @IBOutlet weak var yellowLight: UIImageView!
-    
     @IBOutlet weak var greenLight: UIImageView!
     
-    @IBOutlet weak var pressToSwitchColor: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+    private var currentLight = CurrentLight.red
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
+    
+    @IBOutlet weak var startButton: UIButton!
+    @IBAction func startButtonPressed() {
         
-        // Настройка начальной яркости UIImageView
-        redLight.alpha = 1.0
-        yellowLight.alpha = 1.0
-        greenLight.alpha = 1.0
-        //    }
-        func buttonTapped(_ sender: UIButton) {
-            // Изменение яркости в зависимости от состояния кнопки
-            if redLight.alpha == 1.0 {
-                redLight.alpha = 0.2
-            } else {
-                redLight.alpha = 1.0
-            }
+        startButton.setTitle("NEXT", for: .normal)
+        
+        switch currentLight {
+        case .red:
+            greenLight.alpha = lightIsOff
+            redLight.alpha = lightIsOn
+            currentLight = .yellow
+        case .yellow:
+            redLight.alpha = lightIsOff
+            yellowLight.alpha = lightIsOn
+            currentLight = .green
+        case .green:
+            greenLight.alpha = lightIsOn
+            yellowLight.alpha = lightIsOff
+            currentLight = .red
         }
-        
     }
 }
+
+// Axis - ось то как будут располагаться элементы внутри стэка
+// Alignment - выравнивание по краям или центру
+// Distribution - распределение
+// Spacing - расстояние между элементами внутри стэка
+//MARK: - Низ экрана где прямоугольник квадрат и треугольничек
+//Align - выравнивание. Здест задаются констрейнты для выравнивания по осям или сторонам род View
+//Constraints - правила для расположения и размеров
+//
+//
+//

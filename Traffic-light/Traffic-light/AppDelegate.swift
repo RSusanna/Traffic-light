@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Traffic-light
 //
-//  Created by Susanna Zakaryan on 29.05.2023.
+//  Created by Susanna R on 29.05.2023.
 //
 
 import UIKit
